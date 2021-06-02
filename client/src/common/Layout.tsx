@@ -43,6 +43,9 @@ const Layout: React.FC = ({ children }) => {
                 >
                     <List>
                         <ListItem button>
+                            <ListItemText>Home</ListItemText>
+                        </ListItem>
+                        <ListItem button>
                             <ListItemText>Schedule</ListItemText>
                         </ListItem>
                     </List>
