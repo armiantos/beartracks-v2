@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import Event, { Day } from '../data/Event';
 import getRandomColor from '../util/getRandomColor';
+import toHours from '../util/toHours';
 
 // Define a type for the slice state
 interface ScheduleState {
@@ -93,7 +94,27 @@ export const counterSlice = createSlice({
     initialState,
     reducers: {
         add: (state, action: PayloadAction<Event>) => {
-            state.events.push(action.payload);
+            const event = action.payload;
+
+            for (const day of action.payload.days) {
+                const scheduledEvents = state.events.filter((event) => event.days.includes(day));
+                for (const scheduledEvent of scheduledEvents) {
+                    const scheduledEventStartTime = toHours(scheduledEvent.startTime);
+                    const scheduledEventEndTime = toHours(scheduledEvent.endTime);
+                    const eventStartTime = toHours(event.startTime);
+                    const eventEndTime = toHours(event.endTime);
+
+                    if (
+                        (scheduledEventStartTime <= eventStartTime && eventStartTime <= scheduledEventEndTime) ||
+                        (eventStartTime <= scheduledEventStartTime && scheduledEventStartTime <= eventEndTime)
+                    ) {
+                        alert('Schedule conflict!');
+                        return;
+                    }
+                }
+            }
+
+            state.events.push(event);
         },
     },
 });
