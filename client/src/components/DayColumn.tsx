@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import grey from '@material-ui/core/colors/grey';
 
 import Event, { Day } from '../data/Event';
 import EventComponent from './Event';
@@ -40,7 +41,9 @@ const DayColumn = ({ day, events, startOfDay, hourHeight }: DayProps) => {
                     const top = (start - startOfDay) * hourHeight;
                     const height = (end - start) * hourHeight;
 
-                    return <EventComponent top={top} height={height} description={event.description} color={event.color} />;
+                    return (
+                        <EventComponent top={top} height={height} description={event.description ?? ''} color={event.color ?? grey[400]} />
+                    );
                 })}
             </div>
         </div>
