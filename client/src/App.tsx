@@ -3,15 +3,15 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Layout from './common/Layout';
 import Home from './pages/Home';
-import Schedule from './pages/Schedule';
+import Planner from './pages/Planner';
 
 function App() {
     return (
         <BrowserRouter>
             <Layout>
                 <Switch>
-                    <Route path="/schedule">
-                        <Schedule />
+                    <Route path="/planner">
+                        <Planner />
                     </Route>
                     <Route exact path="/">
                         <Home />

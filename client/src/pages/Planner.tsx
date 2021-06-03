@@ -4,7 +4,7 @@ import ScheduleComponent from '../components/Schedule';
 import Event, { Day } from '../data/Event';
 import getRandomColor from '../util/getRandomColor';
 
-const Schedule = () => {
+const Planner = () => {
     const events: Event[] = [
         {
             startTime: {
@@ -84,4 +84,4 @@ const Schedule = () => {
     return <ScheduleComponent events={events} />;
 };
 
-export default Schedule;
+export default Planner;

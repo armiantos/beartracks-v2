@@ -35,7 +35,7 @@ const Sidebar = () => {
         <nav>
             <Paper square className={classes.root}>
                 <List className={classes.sidebar}>
-                    <ListItemLink href="/schedule" text="Class planner" />
+                    <ListItemLink href="/planner" text="Class planner" />
                     <ListItemLink href="#" text="Exam schedule" />
                     <Divider />
                     <ListItemLink href="#" text="Grades" />
