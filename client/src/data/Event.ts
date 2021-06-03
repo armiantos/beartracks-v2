@@ -8,13 +8,15 @@ export enum Day {
 
 export type Time = {
     hour: number;
-    minute: number;
+    minute?: number;
 };
 
 type Event = {
     startTime: Time;
     endTime: Time;
     days: Day[];
+    description: string;
+    color: string;
 };
 
 export default Event;

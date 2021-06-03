@@ -11,6 +11,7 @@ export type ScheduleProps = {
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'grid',
+        gap: theme.spacing(2),
         gridTemplateColumns: 'repeat(5, 1fr)',
         height: '100%',
     },
@@ -19,12 +20,12 @@ const useStyles = makeStyles((theme) => ({
 
 const Schedule = ({ events }: ScheduleProps) => {
     const classes = useStyles();
-    const days = Object.keys(Day);
+    const days = [Day.Monday, Day.Tuesday, Day.Wednesday, Day.Thursday, Day.Friday];
 
     return (
         <div className={classes.root}>
             {days.map((day) => (
-                <DayColumn day={day} events={[]} />
+                <DayColumn day={day} events={events.filter((event) => event.days.includes(day))} />
             ))}
         </div>
     );
