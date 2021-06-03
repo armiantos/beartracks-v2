@@ -1,10 +1,21 @@
 import React from 'react';
-import ScheduleComponent from '../components/Schedule';
+import { makeStyles } from '@material-ui/core/styles';
 
+import CourseSearcher from '../components/CourseSearcher';
+import ScheduleComponent from '../components/Schedule';
 import Event, { Day } from '../data/Event';
 import getRandomColor from '../util/getRandomColor';
 
+const useStyles = makeStyles((theme) => ({
+    root: {
+        display: 'flex',
+        height: '100%',
+    },
+}));
+
 const Planner = () => {
+    const classes = useStyles();
+
     const events: Event[] = [
         {
             startTime: {
@@ -81,7 +92,12 @@ const Planner = () => {
         },
     ];
 
-    return <ScheduleComponent events={events} />;
+    return (
+        <div className={classes.root}>
+            <CourseSearcher />
+            <ScheduleComponent events={events} />
+        </div>
+    );
 };
 
 export default Planner;
