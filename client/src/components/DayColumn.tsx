@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function addMeridiemSuffix(hour: number) {
-    return hour / 12 > 1 ? `${hour} AM` : hour === 12 ? `${hour} PM ` : `${hour % 12} PM`;
+    return hour / 12 < 1 ? `${hour} AM` : hour === 12 ? `${hour} PM ` : `${hour % 12} PM`;
 }
 
 const DayColumn = ({ day, events }: DayProps) => {
