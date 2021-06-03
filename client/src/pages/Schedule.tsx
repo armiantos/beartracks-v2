@@ -1,7 +1,8 @@
 import React from 'react';
+import ScheduleComponent from '../components/Schedule';
 
 const Schedule = () => {
-    return <div>Schedule page</div>;
+    return <ScheduleComponent events={[]} />;
 };
 
 export default Schedule;
