@@ -7,7 +7,6 @@ type EventProps = {
     height: number;
     description: string;
     color: string;
-    hourHeight: number;
 };
 
 const useStyles = makeStyles((theme) => ({
@@ -21,14 +20,14 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Event = ({ top, height, description, color, hourHeight }: EventProps) => {
+const Event = ({ top, height, description, color }: EventProps) => {
     const classes = useStyles();
 
     return (
         <div
             style={{
-                top: top * hourHeight,
-                height: height * hourHeight,
+                top: top,
+                height: height,
                 backgroundColor: color,
             }}
             className={classes.root}
