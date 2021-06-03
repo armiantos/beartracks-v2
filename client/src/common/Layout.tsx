@@ -20,7 +20,6 @@ const useStyles = makeStyles((theme) => ({
     content: {
         width: '100%',
         flexGrow: 1,
-        margin: theme.spacing(2),
     },
 }));
 

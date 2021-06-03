@@ -15,8 +15,8 @@ type Event = {
     startTime: Time;
     endTime: Time;
     days: Day[];
-    description: string;
-    color: string;
+    description?: string;
+    color?: string;
 };
 
 export default Event;

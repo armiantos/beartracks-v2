@@ -16,17 +16,18 @@ const hourHeight = theme.spacing(8);
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
+        flexGrow: 1,
         flexDirection: 'column',
+        margin: theme.spacing(2),
     },
     week: {
         display: 'grid',
         gap: theme.spacing(2),
         gridTemplateColumns: '5rem repeat(5, 1fr)',
-        height: '100%',
     },
     header: {
-        marginTop: theme.spacing(1),
-        marginBottom: theme.spacing(3),
+        marginTop: theme.spacing(3),
+        marginBottom: theme.spacing(1),
     },
     hour: {
         height: hourHeight,
