@@ -1,8 +1,9 @@
 import React from 'react';
-import Paper from '@material-ui/core/Paper';
+import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -14,6 +15,19 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+type ListItemLinkProps = {
+    text: string;
+    href: string;
+};
+
+const ListItemLink: React.FC<ListItemLinkProps> = (props) => {
+    return (
+        <ListItem button component="a" href={props.href}>
+            <ListItemText>{props.text}</ListItemText>
+        </ListItem>
+    );
+};
+
 const Sidebar = () => {
     const classes = useStyles();
 
@@ -21,12 +35,11 @@ const Sidebar = () => {
         <nav>
             <Paper square className={classes.root}>
                 <List className={classes.sidebar}>
-                    <ListItem button>
-                        <ListItemText>Home</ListItemText>
-                    </ListItem>
-                    <ListItem button>
-                        <ListItemText>Schedule</ListItemText>
-                    </ListItem>
+                    <ListItemLink href="/schedule" text="Class planner" />
+                    <ListItemLink href="#" text="Exam schedule" />
+                    <Divider />
+                    <ListItemLink href="#" text="Grades" />
+                    <ListItemLink href="#" text="Transcript " />
                 </List>
             </Paper>
         </nav>
