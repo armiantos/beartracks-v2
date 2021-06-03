@@ -57,7 +57,7 @@ const CourseSearcher = () => {
                 <List>
                     {searchResults.map((search) => (
                         <ListItem button>
-                            <ListItemText primary={search.code} secondary={search.courseComponents} />
+                            <ListItemText primary={search.code} secondary={search.courseComponents[0].contactName} />
                         </ListItem>
                     ))}
                 </List>
