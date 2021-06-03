@@ -17,6 +17,11 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'row',
         flexGrow: 1,
     },
+    content: {
+        width: '100%',
+        flexGrow: 1,
+        margin: theme.spacing(2),
+    },
 }));
 
 const Layout: React.FC = ({ children }) => {
@@ -28,7 +33,7 @@ const Layout: React.FC = ({ children }) => {
                 <Header />
                 <div className={classes.app}>
                     <Sidebar />
-                    <main>{children}</main>
+                    <main className={classes.content}>{children}</main>
                 </div>
             </div>
         </ThemeProvider>
