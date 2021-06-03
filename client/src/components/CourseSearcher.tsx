@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import List from '@material-ui/core/List';
@@ -8,6 +9,8 @@ import { makeStyles } from '@material-ui/core/styles';
 
 import Course, { ComponentType } from '../data/Course';
 import { Day } from '../data/Event';
+import { add } from '../reducers/scheduleReducer';
+import getRandomColor from '../util/getRandomColor';
 
 async function searchCourse(className: string): Promise<Course[]> {
     const lecturers = ['Alice', 'Bob', 'Charlie'];
@@ -41,6 +44,8 @@ const CourseSearcher = () => {
     const [search, setSearch] = useState('');
     const [searchResults, setSearchResults] = useState<Course[]>([]);
 
+    const dispatch = useDispatch();
+
     return (
         <Paper className={classes.root}>
             <TextField
@@ -56,7 +61,18 @@ const CourseSearcher = () => {
             {search !== '' && (
                 <List>
                     {searchResults.map((search) => (
-                        <ListItem button>
+                        <ListItem
+                            button
+                            onClick={(e) =>
+                                dispatch(
+                                    add({
+                                        ...search.courseComponents[0].event,
+                                        description: search.code,
+                                        color: getRandomColor(),
+                                    })
+                                )
+                            }
+                        >
                             <ListItemText primary={search.code} secondary={search.courseComponents[0].contactName} />
                         </ListItem>
                     ))}
