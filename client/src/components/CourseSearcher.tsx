@@ -34,7 +34,7 @@ const CourseSearcher = () => {
                 onChange={(e) => setSearch(e.target.value)}
                 onKeyDown={async (e) => {
                     if (e.key === 'Enter') {
-                        searchCourse(search);
+                        dispatch(searchCourse(search));
                     }
                 }}
             />
