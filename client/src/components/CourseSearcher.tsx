@@ -7,29 +7,9 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { makeStyles } from '@material-ui/core/styles';
 
-import Course, { ComponentType } from '../data/Course';
-import { Day } from '../data/Event';
-import { add } from '../reducers/scheduleReducer';
-import getRandomColor from '../util/getRandomColor';
-
-async function searchCourse(className: string): Promise<Course[]> {
-    const lecturers = ['Alice', 'Bob', 'Charlie'];
-
-    return lecturers.map((lecturer) => ({
-        code: 'ECE 322',
-        courseComponents: [
-            {
-                type: ComponentType.Lecture,
-                contactName: lecturer,
-                event: {
-                    startTime: { hour: 8 },
-                    endTime: { hour: 8, minute: 50 },
-                    days: [Day.Monday, Day.Wednesday, Day.Friday],
-                },
-            },
-        ],
-    }));
-}
+import { searchCourse } from '../reducers/courseSearchReducer';
+import { addCourseToSchedule } from '../reducers/scheduleReducer';
+import { useAppSelector } from '../store';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -42,7 +22,7 @@ const CourseSearcher = () => {
     const classes = useStyles();
 
     const [search, setSearch] = useState('');
-    const [searchResults, setSearchResults] = useState<Course[]>([]);
+    const searchResults = useAppSelector((state) => state.courseSearch.searchResults);
 
     const dispatch = useDispatch();
 
@@ -54,7 +34,7 @@ const CourseSearcher = () => {
                 onChange={(e) => setSearch(e.target.value)}
                 onKeyDown={async (e) => {
                     if (e.key === 'Enter') {
-                        setSearchResults(await searchCourse(search));
+                        searchCourse(search);
                     }
                 }}
             />
@@ -65,10 +45,9 @@ const CourseSearcher = () => {
                             button
                             onClick={(e) =>
                                 dispatch(
-                                    add({
+                                    addCourseToSchedule({
                                         ...search.courseComponents[0].event,
                                         description: search.code,
-                                        color: getRandomColor(),
                                     })
                                 )
                             }
