@@ -93,20 +93,20 @@ export const counterSlice = createSlice({
     name: 'schedule',
     initialState,
     reducers: {
-        add: (state, action: PayloadAction<Event>) => {
-            const event = action.payload;
+        addCourseToSchedule: (state, action: PayloadAction<Event>) => {
+            const course = action.payload;
 
             for (const day of action.payload.days) {
-                const scheduledEvents = state.events.filter((event) => event.days.includes(day));
-                for (const scheduledEvent of scheduledEvents) {
-                    const scheduledEventStartTime = toHours(scheduledEvent.startTime);
-                    const scheduledEventEndTime = toHours(scheduledEvent.endTime);
-                    const eventStartTime = toHours(event.startTime);
-                    const eventEndTime = toHours(event.endTime);
+                const addedCourses = state.events.filter((event) => event.days.includes(day));
+                for (const addedCourse of addedCourses) {
+                    const addedCourseStartTime = toHours(addedCourse.startTime);
+                    const addedCourseEndTime = toHours(addedCourse.endTime);
+                    const courseStartTime = toHours(course.startTime);
+                    const courseEndTime = toHours(course.endTime);
 
                     if (
-                        (scheduledEventStartTime <= eventStartTime && eventStartTime <= scheduledEventEndTime) ||
-                        (eventStartTime <= scheduledEventStartTime && scheduledEventStartTime <= eventEndTime)
+                        (addedCourseStartTime <= courseStartTime && courseStartTime <= addedCourseEndTime) ||
+                        (courseStartTime <= addedCourseStartTime && addedCourseStartTime <= courseEndTime)
                     ) {
                         alert('Schedule conflict!');
                         return;
@@ -114,11 +114,13 @@ export const counterSlice = createSlice({
                 }
             }
 
-            state.events.push(event);
+            course.color = getRandomColor();
+
+            state.events.push(course);
         },
     },
 });
 
-export const { add } = counterSlice.actions;
+export const { addCourseToSchedule } = counterSlice.actions;
 
 export default counterSlice.reducer;

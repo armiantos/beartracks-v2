@@ -4,13 +4,11 @@ import Course from '../data/Course';
 
 // Define a type for the slice state
 interface CourseSearchState {
-    search: string;
     searchResults: Course[];
 }
 
 // Define the initial state using that type
 const initialState: CourseSearchState = {
-    search: '',
     searchResults: [],
 };
 
@@ -18,12 +16,12 @@ export const counterSlice = createSlice({
     name: 'courseSearch',
     initialState,
     reducers: {
-        search: (state, action: PayloadAction<string>) => {
-            state.search = action.payload;
+        searchCourse: (state, action: PayloadAction<string>) => {
+            // TODO: call server and possibly integrate with react-redux
         },
     },
 });
 
-export const { search } = counterSlice.actions;
+export const { searchCourse } = counterSlice.actions;
 
 export default counterSlice.reducer;
