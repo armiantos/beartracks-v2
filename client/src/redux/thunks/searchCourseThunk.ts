@@ -2,7 +2,7 @@ import { AsyncThunkPayloadCreator, createAsyncThunk } from '@reduxjs/toolkit';
 import Course, { ComponentType } from '../../data/Course';
 import { Day } from '../../data/Event';
 
-export const searchCourse: AsyncThunkPayloadCreator<Course[], string, {}> = async (course: string, _thunkAPI) => {
+export const searchCourse: AsyncThunkPayloadCreator<Course[], string, Record<string, never>> = async (course: string) => {
     // TODO: Call server
     const courses: Course[] = [
         {

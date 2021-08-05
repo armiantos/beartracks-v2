@@ -7,7 +7,6 @@ import Event, { Day } from '../data/Event';
 import DayColumn from './DayColumn';
 import addMeridiemSuffix from '../util/addMeridiemSuffix';
 import theme from '../styles/theme';
-import { Divider } from '@material-ui/core';
 
 export type ScheduleProps = {
     events: Event[];
@@ -39,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Schedule = ({ events }: ScheduleProps) => {
+const Schedule: React.FC<ScheduleProps> = ({ events }: ScheduleProps) => {
     const classes = useStyles();
     const days = [Day.Monday, Day.Tuesday, Day.Wednesday, Day.Thursday, Day.Friday];
 
@@ -51,10 +50,12 @@ const Schedule = ({ events }: ScheduleProps) => {
     return (
         <div className={classes.root}>
             <div className={clsx(classes.sixCol, classes.header)}>
-                {/* First column placeholder     */}
+                {/* First column placeholder */}
                 <div></div>
                 {days.map((day) => (
-                    <Typography align="center">{Day[day]}</Typography>
+                    <Typography key={day} align="center">
+                        {Day[day]}
+                    </Typography>
                 ))}
             </div>
 
@@ -69,6 +70,7 @@ const Schedule = ({ events }: ScheduleProps) => {
 
                 {days.map((day) => (
                     <DayColumn
+                        key={day}
                         day={day}
                         events={events.filter((event) => event.days.includes(day))}
                         startOfDay={startOfDay}

@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const DayColumn = ({ day, events, startOfDay, hourHeight }: DayProps) => {
+const DayColumn: React.FC<DayProps> = ({ day, events, startOfDay, hourHeight }: DayProps) => {
     const classes = useStyles();
 
     return (
@@ -41,7 +41,15 @@ const DayColumn = ({ day, events, startOfDay, hourHeight }: DayProps) => {
                     const top = (start - startOfDay) * hourHeight;
                     const height = (end - start) * hourHeight;
 
-                    return <Event top={top} height={height} description={event.description ?? ''} color={event.color ?? grey[400]} />;
+                    return (
+                        <Event
+                            key={event.description}
+                            top={top}
+                            height={height}
+                            description={event.description ?? ''}
+                            color={event.color ?? grey[400]}
+                        />
+                    );
                 })}
             </div>
         </div>

@@ -6,7 +6,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     root: {
         height: '100%',
     },
@@ -20,7 +20,7 @@ type ListItemLinkProps = {
     href: string;
 };
 
-const ListItemLink: React.FC<ListItemLinkProps> = (props) => {
+const ListItemLink: React.FC<ListItemLinkProps> = (props: ListItemLinkProps) => {
     return (
         <ListItem button component="a" href={props.href}>
             <ListItemText>{props.text}</ListItemText>
@@ -28,7 +28,7 @@ const ListItemLink: React.FC<ListItemLinkProps> = (props) => {
     );
 };
 
-const Sidebar = () => {
+const Sidebar: React.FC = () => {
     const classes = useStyles();
 
     return (

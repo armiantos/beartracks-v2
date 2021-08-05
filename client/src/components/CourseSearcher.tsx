@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const CourseSearcher = () => {
+const CourseSearcher: React.FC = () => {
     const classes = useStyles();
 
     const { searchTerm, searchResults } = useAppSelector((state) => state.courseSearch);
@@ -46,8 +46,9 @@ const CourseSearcher = () => {
             <List>
                 {searchResults.map((search) => (
                     <ListItem
+                        key={search.code}
                         button
-                        onClick={(_e) =>
+                        onClick={() =>
                             dispatch(
                                 addCourseToSchedule({
                                     ...search.courseComponents[0].event,
