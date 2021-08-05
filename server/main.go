@@ -27,6 +27,6 @@ func main() {
 
 	server := initializeServer()
 
-	log.Infof("Server listening at port %d", port)
-	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", port), server))
+	log.Infof("Server listening at port %d", *port)
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", *port), server))
 }

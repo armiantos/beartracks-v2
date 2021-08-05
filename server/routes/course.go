@@ -6,5 +6,5 @@ import (
 )
 
 func RegisterCourseRoutes(router *mux.Router) {
-	router.Get("/course").HandlerFunc(controllers.FindCourse())
+	router.Methods("GET").HandlerFunc(controllers.FindCourse())
 }
