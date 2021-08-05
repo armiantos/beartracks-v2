@@ -7,8 +7,8 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { searchCourse } from '../reducers/courseSearchReducer';
-import { addCourseToSchedule } from '../reducers/scheduleReducer';
+import searchCourse from '../redux/thunks/searchCourseThunk';
+import { addCourseToSchedule } from '../redux/slices/scheduleSlice';
 import { useAppSelector } from '../store';
 
 const useStyles = makeStyles((theme) => ({

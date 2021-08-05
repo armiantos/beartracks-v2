@@ -1,8 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import Event, { Day } from '../data/Event';
-import getRandomColor from '../util/getRandomColor';
-import toHours from '../util/toHours';
+import Event, { Day } from '../../data/Event';
+import getRandomColor from '../../util/getRandomColor';
+import toHours from '../../util/toHours';
 
 interface ScheduleState {
     events: Event[];
