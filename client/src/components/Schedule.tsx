@@ -43,8 +43,8 @@ const Schedule = ({ events }: ScheduleProps) => {
     const classes = useStyles();
     const days = [Day.Monday, Day.Tuesday, Day.Wednesday, Day.Thursday, Day.Friday];
 
-    const startOfDay = 8;
-    const endOfDay = 22;
+    const startOfDay = events.reduce((acc, event) => Math.min(event.startTime.hour, acc), 9);
+    const endOfDay = events.reduce((acc, event) => Math.max(event.endTime.hour + 1, acc), 5);
 
     const hours = [...Array(endOfDay - startOfDay).keys()].map((hour: number) => hour + startOfDay);
 
