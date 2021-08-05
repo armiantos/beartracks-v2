@@ -93,7 +93,7 @@ export const counterSlice = createSlice({
         addCourseToSchedule: (state, action: PayloadAction<Event>) => {
             const course = action.payload;
 
-            for (const day of action.payload.days) {
+            for (const day of course.days) {
                 const addedCourses = state.events.filter((event) => event.days.includes(day));
                 for (const addedCourse of addedCourses) {
                     const addedCourseStartTime = toHours(addedCourse.startTime);
