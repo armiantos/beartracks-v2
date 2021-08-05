@@ -21,7 +21,7 @@ func initializeServer() *mux.Router {
 }
 
 func main() {
-	port := flag.Int("p", 80, "Port for server to listen to")
+	port := flag.Int("p", 1337, "Port for server to listen to")
 
 	flag.Parse()
 
