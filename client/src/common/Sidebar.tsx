@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -20,7 +20,7 @@ type ListItemLinkProps = {
     href: string;
 };
 
-const ListItemLink: React.FC<ListItemLinkProps> = (props) => {
+const ListItemLink: React.FC<ListItemLinkProps> = (props: ListItemLinkProps) => {
     return (
         <ListItem button component="a" href={props.href}>
             <ListItemText>{props.text}</ListItemText>
@@ -28,7 +28,7 @@ const ListItemLink: React.FC<ListItemLinkProps> = (props) => {
     );
 };
 
-const Sidebar = () => {
+const Sidebar: React.FC = () => {
     const classes = useStyles();
 
     return (

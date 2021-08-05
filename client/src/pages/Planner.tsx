@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Planner = () => {
+const Planner: React.FC = () => {
     const classes = useStyles();
     const events = useAppSelector((state) => state.schedule.events);
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { makeStyles, ThemeProvider } from '@material-ui/core/styles';
 
@@ -23,7 +23,9 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Layout: React.FC = ({ children }) => {
+type LayoutProps = Record<string, never>;
+
+const Layout: React.FC<LayoutProps> = ({ children }: PropsWithChildren<LayoutProps>) => {
     const classes = useStyles();
     return (
         <ThemeProvider theme={theme}>

@@ -5,7 +5,7 @@ import Layout from './common/Layout';
 import Home from './pages/Home';
 import Planner from './pages/Planner';
 
-function App() {
+const App: React.FC = () => {
     return (
         <BrowserRouter>
             <Layout>
@@ -20,6 +20,6 @@ function App() {
             </Layout>
         </BrowserRouter>
     );
-}
+};
 
 export default App;

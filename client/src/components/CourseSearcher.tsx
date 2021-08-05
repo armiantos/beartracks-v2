@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const CourseSearcher = () => {
+const CourseSearcher: React.FC = () => {
     const classes = useStyles();
 
     const { searchTerm, searchResults } = useAppSelector((state) => state.courseSearch);
@@ -46,6 +46,7 @@ const CourseSearcher = () => {
             <List>
                 {searchResults.map((search) => (
                     <ListItem
+                        key={search.code}
                         button
                         onClick={(_e) =>
                             dispatch(
