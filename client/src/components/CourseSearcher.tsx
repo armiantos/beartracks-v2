@@ -10,6 +10,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import searchCourse from '../redux/thunks/searchCourseThunk';
 import { addCourseToSchedule } from '../redux/slices/scheduleSlice';
 import { useAppSelector } from '../store';
+import { setSearchTerm } from '../redux/slices/courseSearchSlice';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -21,8 +22,7 @@ const useStyles = makeStyles((theme) => ({
 const CourseSearcher = () => {
     const classes = useStyles();
 
-    const [search, setSearch] = useState('');
-    const searchResults = useAppSelector((state) => state.courseSearch.searchResults);
+    const { searchTerm, searchResults } = useAppSelector((state) => state.courseSearch);
 
     const dispatch = useDispatch();
 
@@ -30,33 +30,32 @@ const CourseSearcher = () => {
         <Paper className={classes.root}>
             <TextField
                 label="Class name"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
+                value={searchTerm}
+                onChange={(e) => dispatch(setSearchTerm(e.target.value))}
                 onKeyDown={async (e) => {
                     if (e.key === 'Enter') {
-                        dispatch(searchCourse(search));
+                        dispatch(searchCourse(searchTerm));
                     }
                 }}
             />
-            {search !== '' && (
-                <List>
-                    {searchResults.map((search) => (
-                        <ListItem
-                            button
-                            onClick={(e) =>
-                                dispatch(
-                                    addCourseToSchedule({
-                                        ...search.courseComponents[0].event,
-                                        description: search.code,
-                                    })
-                                )
-                            }
-                        >
-                            <ListItemText primary={search.code} secondary={search.courseComponents[0].contactName} />
-                        </ListItem>
-                    ))}
-                </List>
-            )}
+
+            <List>
+                {searchResults.map((search) => (
+                    <ListItem
+                        button
+                        onClick={(e) =>
+                            dispatch(
+                                addCourseToSchedule({
+                                    ...search.courseComponents[0].event,
+                                    description: search.code,
+                                })
+                            )
+                        }
+                    >
+                        <ListItemText primary={search.code} secondary={search.courseComponents[0].contactName} />
+                    </ListItem>
+                ))}
+            </List>
         </Paper>
     );
 };
