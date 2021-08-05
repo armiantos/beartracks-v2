@@ -6,7 +6,7 @@ import Header from './Header';
 import theme from '../styles/theme';
 import Sidebar from './Sidebar';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     root: {
         display: 'flex',
         flexDirection: 'column',

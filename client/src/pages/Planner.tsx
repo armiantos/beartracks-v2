@@ -5,7 +5,7 @@ import CourseSearcher from '../components/CourseSearcher';
 import ScheduleComponent from '../components/Schedule';
 import { useAppSelector } from '../store';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
     root: {
         display: 'flex',
         height: '100%',

@@ -48,7 +48,7 @@ const CourseSearcher: React.FC = () => {
                     <ListItem
                         key={search.code}
                         button
-                        onClick={(_e) =>
+                        onClick={() =>
                             dispatch(
                                 addCourseToSchedule({
                                     ...search.courseComponents[0].event,

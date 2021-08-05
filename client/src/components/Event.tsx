@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Event = ({ top, height, description, color }: EventProps) => {
+const Event: React.FC<EventProps> = ({ top, height, description, color }: EventProps) => {
     const classes = useStyles();
 
     return (
