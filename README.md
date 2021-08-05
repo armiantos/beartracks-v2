@@ -1,7 +1,7 @@
 # beartracks-v2
 
 <p align="center">
-  <img width="460" height="300" src="./docs/img/scheduler.png">
+  <img src="./docs/img/scheduler.png">
 </p>
 
 Schedule and manage your classes quickly using **beartracks-v2**
