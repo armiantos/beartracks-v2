@@ -47,7 +47,7 @@ const CourseSearcher = () => {
                 {searchResults.map((search) => (
                     <ListItem
                         button
-                        onClick={(e) =>
+                        onClick={(_e) =>
                             dispatch(
                                 addCourseToSchedule({
                                     ...search.courseComponents[0].event,
