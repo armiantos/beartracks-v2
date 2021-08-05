@@ -17,6 +17,9 @@ const useStyles = makeStyles((theme) => ({
         height: '100%',
         padding: theme.spacing(4),
     },
+    search: {
+        width: '100%',
+    },
 }));
 
 const CourseSearcher = () => {
@@ -30,6 +33,7 @@ const CourseSearcher = () => {
         <Paper className={classes.root}>
             <TextField
                 label="Class name"
+                className={classes.search}
                 value={searchTerm}
                 onChange={(e) => dispatch(setSearchTerm(e.target.value))}
                 onKeyDown={async (e) => {
