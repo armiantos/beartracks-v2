@@ -7,7 +7,6 @@ import Event, { Day } from '../data/Event';
 import DayColumn from './DayColumn';
 import addMeridiemSuffix from '../util/addMeridiemSuffix';
 import theme from '../styles/theme';
-import { Divider } from '@material-ui/core';
 
 export type ScheduleProps = {
     events: Event[];
