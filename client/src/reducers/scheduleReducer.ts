@@ -4,14 +4,11 @@ import Event, { Day } from '../data/Event';
 import getRandomColor from '../util/getRandomColor';
 import toHours from '../util/toHours';
 
-// Define a type for the slice state
 interface ScheduleState {
     events: Event[];
 }
 
-// Define the initial state using that type
 const initialState: ScheduleState = {
-    // TODO: initialize with empty string
     events: [
         {
             startTime: {
@@ -47,7 +44,7 @@ const initialState: ScheduleState = {
             },
             days: [Day.Monday, Day.Wednesday, Day.Friday],
             color: getRandomColor(),
-            description: 'ECE 422   ',
+            description: 'ECE 422',
         },
         {
             startTime: {

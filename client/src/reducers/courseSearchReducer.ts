@@ -3,12 +3,10 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import Course, { ComponentType } from '../data/Course';
 import { Day } from '../data/Event';
 
-// Define a type for the slice state
 interface CourseSearchState {
     searchResults: Course[];
 }
 
-// Define the initial state using that type
 const initialState: CourseSearchState = {
     searchResults: [],
 };
