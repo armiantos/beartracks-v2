@@ -1,4 +1,5 @@
 import React from 'react';
+import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
@@ -6,6 +7,7 @@ import Event, { Day } from '../data/Event';
 import DayColumn from './DayColumn';
 import addMeridiemSuffix from '../util/addMeridiemSuffix';
 import theme from '../styles/theme';
+import { Divider } from '@material-ui/core';
 
 export type ScheduleProps = {
     events: Event[];
@@ -20,15 +22,15 @@ const useStyles = makeStyles((theme) => ({
         flexDirection: 'column',
         margin: theme.spacing(2),
     },
-    week: {
+    sixCol: {
         display: 'grid',
         gap: theme.spacing(2),
         gridTemplateColumns: '5rem repeat(5, 1fr)',
     },
     header: {
-        marginTop: theme.spacing(3),
-        marginBottom: theme.spacing(1),
+        marginBottom: theme.spacing(2),
     },
+    schedule: {},
     hour: {
         height: hourHeight,
     },
@@ -41,22 +43,22 @@ const Schedule = ({ events }: ScheduleProps) => {
     const classes = useStyles();
     const days = [Day.Monday, Day.Tuesday, Day.Wednesday, Day.Thursday, Day.Friday];
 
-    const startOfDay = 8;
-    const endOfDay = 22;
+    const startOfDay = events.reduce((acc, event) => Math.min(event.startTime.hour, acc), 9);
+    const endOfDay = events.reduce((acc, event) => Math.max(event.endTime.hour + 1, acc), 5);
 
     const hours = [...Array(endOfDay - startOfDay).keys()].map((hour: number) => hour + startOfDay);
 
     return (
         <div className={classes.root}>
-            <div className={classes.week}>
+            <div className={clsx(classes.sixCol, classes.header)}>
+                {/* First column placeholder     */}
                 <div></div>
                 {days.map((day) => (
-                    <Typography align="center" className={classes.header}>
-                        {Day[day]}
-                    </Typography>
+                    <Typography align="center">{Day[day]}</Typography>
                 ))}
             </div>
-            <div className={classes.week}>
+
+            <div className={clsx(classes.sixCol)}>
                 <div className={classes.timelotsColumn}>
                     {hours.map((hour) => (
                         <div key={hour} className={classes.hour}>

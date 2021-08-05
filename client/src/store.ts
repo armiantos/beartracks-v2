@@ -2,8 +2,8 @@ import { configureStore } from '@reduxjs/toolkit';
 import { TypedUseSelectorHook, useSelector } from 'react-redux';
 import thunk from 'redux-thunk';
 
-import courseSearchReducer from './reducers/courseSearchReducer';
-import scheduleReducer from './reducers/scheduleReducer';
+import courseSearchReducer from './redux/slices/courseSearchSlice';
+import scheduleReducer from './redux/slices/scheduleSlice';
 
 const store = configureStore({
     reducer: {
