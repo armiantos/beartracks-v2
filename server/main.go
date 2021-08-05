@@ -1,14 +1,32 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"net/http"
+
+	"github.com/gorilla/mux"
+	log "github.com/sirupsen/logrus"
+
+	"github.com/armiantos/beartracks-v2/routes"
 )
 
-func main() {
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Hello, you've requested: %s\n", r.URL.Path)
-	})
+func initializeServer() *mux.Router {
+	r := mux.NewRouter()
 
-	http.ListenAndServe(":80", nil)
+	apiRoutes := r.PathPrefix("/api/v1").Subrouter()
+	routes.RegisterCourseRoutes(apiRoutes)
+
+	return r
+}
+
+func main() {
+	port := flag.Int("p", 80, "Port for server to listen to")
+
+	flag.Parse()
+
+	server := initializeServer()
+
+	log.Infof("Server listening at port %d", port)
+	log.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", port), server))
 }
